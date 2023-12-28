@@ -58,7 +58,7 @@ main > section article input[type="password"] {
     box-sizing: border-box;
 }
 
-main > section article input[type="text"], 
+main > section article input[type="text"]:focus, 
 main > section article input[type="password"]:focus {
     border: var(--main-color) solid 0.1rem;
 }
@@ -122,7 +122,7 @@ main > section button {
 
     border: transparent solid 0.15rem;
 
-    transition: border 0.25s;
+    transition: border 0.25s, background-color 0.25s;
     cursor: pointer;
     margin-top: 1rem;
 
@@ -133,6 +133,11 @@ main > section button.auth {
 
 main > section button.auth:hover {
     background-color: var(--secondary-color);
+}
+
+main > section button.auth img {
+    width: 1rem;
+    height: 1rem;
 }
 
 main > section button.reg {

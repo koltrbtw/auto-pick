@@ -33,7 +33,7 @@ export const trySignIn = async (evt: H3Event) => {
                 data: "Пароль некорректный"
             }
 
-        return accountToken;
+        return { data: accountToken };
     } catch {
         throw createError({
             statusCode: 500,

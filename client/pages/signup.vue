@@ -32,8 +32,12 @@
                 </section>
             </article>
 
-            <button class="auth" @click="trySignUp">
+            <button v-if="!waitResponse" @click="trySignUp" class="auth">
                 Создать аккаунт
+            </button>
+
+            <button v-else class="auth">
+                <img src="/icons/animations/loading.svg"/>
             </button>
 
             <button class="reg" @click="navigate('/signin')">
@@ -54,6 +58,8 @@ definePageMeta({
 export default {
     data() {
         return {
+            waitResponse: false,
+
             login: "",
             password: "",
             repeatedPassword: "",
@@ -64,12 +70,17 @@ export default {
     },
 
     methods: {
-        trySignUp: async function() {
+        trySignUp: async function() {            
+            if (this.waitResponse)
+                return;
+            
             if (this.repeatedPassword != this.password)
             {
                 this.callError("repeatedPassword", "Пароль не совпадает")
                 return;
             }
+
+            this.waitResponse = true;
 
             const result = await $fetch('api/auth/trysignup', {
                 method: 'POST',
@@ -79,7 +90,7 @@ export default {
                 }
             });
 
-            console.log(result);
+            this.waitResponse = false;
 
             if (result.status == "error")
             {
@@ -90,7 +101,7 @@ export default {
             const authToken = useCookie("authToken");
             authToken.value = result.data;
 
-            await this.navigate("/");
+            await navigateTo("/");
         },
 
         callError: function(field, message) {

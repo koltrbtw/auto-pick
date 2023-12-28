@@ -32,6 +32,10 @@ export const accountExist = async(login: string, password: string) => {
     if (!exist)
         return "";
 
+    return generateNewToken(login);
+}
+
+export const generateNewToken = async(login: string) => {
     const token = generateRandom();
 
     const result = await sql({

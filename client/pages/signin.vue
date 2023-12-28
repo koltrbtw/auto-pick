@@ -23,13 +23,12 @@
                 </section>
             </article>
 
-            <article class="checkbox">
-                <input type="checkbox">
-                <p>Не выходить</p>
-            </article>
-
-            <button @click="trySignIn()" class="auth">
+            <button v-if="!waitResponse" @click="trySignIn()" class="auth">
                 Войти в аккаунт
+            </button>
+
+            <button v-else class="auth">
+                <img src="/icons/animations/loading.svg"/>
             </button>
 
             <button class="reg" @click="navigate('/signup')">
@@ -44,12 +43,17 @@
 <script>
 
 definePageMeta({
-  layout: 'noHeader'
+  layout: 'noHeader',
+  middleware: [
+    "in-account"
+  ]
 })
 
 export default {
     data() {
         return {
+            waitResponse: false,
+
             login: "",
             password: "",
 
@@ -60,6 +64,11 @@ export default {
 
     methods: {
         trySignIn: async function() {
+            if (this.waitResponse)
+                return;
+
+            this.waitResponse = true;
+            
             const result = await $fetch('api/auth/trysignin', {
                 method: 'POST',
                 body: {
@@ -68,18 +77,18 @@ export default {
                 }
             });
 
+            this.waitResponse = false;
+
             if (result.status == "error")
             {
                 this.callError(result.field, result.data)
                 return;
             }
 
-            console.log(result);
-
             const authToken = useCookie("authToken");
             authToken.value = result.data;
 
-            await this.navigate("/");
+            await navigateTo("/")
         },
 
         callError: function(field, message) {

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <header>
-        HEADEr
-    </header>
+    <headerVue/>
+
     <main>
       <slot />
     </main>
@@ -10,5 +9,14 @@
 </template>
 
 <script>
+
+import headerVue from '~/components/header.vue';
+
+export default {
+    name: "default",
+    components: {
+      headerVue
+    }
+}
 
 </script>
