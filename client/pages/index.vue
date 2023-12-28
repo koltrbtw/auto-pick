@@ -10,6 +10,8 @@
 
         <section class="page">
             <section class="filters">
+                <h4>Поиск</h4>
+                <input v-model="searchName" class="search" placeholder="Название..." type="text">
                 <h4>Тип топлива</h4>
                 <ul>
                     <li :class="{ active: filters['fuelType'].value == -1 }"
@@ -65,6 +67,8 @@ export default {
                 
             ],
 
+            searchName: "",
+
             filters: {
                 "fuelType": {
                     value: -1
@@ -115,6 +119,9 @@ export default {
                     result = result.filter((vehicle) => vehicle[key] == this.filters[key].value);
                 }
             }
+
+            if (this.searchName != "")
+                result = result.filter((vehicle) => vehicle["name"].includes(this.searchName));
 
             return result;
         },
@@ -190,6 +197,21 @@ export default {
 #catalog .filters ul li.active, #catalog .filters ul li:hover {
     color: white;
     background-color: var(--main-color);
+}
+
+#catalog .filters .search {
+    width: 70%;
+    padding: 0.75rem;
+    background-color: var(--light-gray-color);
+    border: transparent 0.15rem solid;
+    outline: none;
+    border-radius: 10rem;
+
+    transition: border 0.25s;
+}
+
+#catalog .filters .search:focus {
+    border: var(--main-color) 0.15rem solid;
 }
 
 #catalog .page {
