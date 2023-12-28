@@ -1,0 +1,22 @@
+:root {
+    --main-color: #1166DD;
+    --secondary-color: #0B4089;
+    --gray-color: #5E5E5E;
+    --light-gray-color: #F5F5F5;
+    --main-font: 'Stolzl';
+    --red-color: #fe6b66;
+    --light-red-color: #fbefef;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+
+    font-family: var(--main-font);
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}

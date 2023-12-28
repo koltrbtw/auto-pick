@@ -1,0 +1,145 @@
+
+
+main {
+    width: 100%;
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column
+}
+
+main > section {
+    width: 17rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+}
+
+main > section h1 {
+    color: var(--main-color);
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+}
+
+main > section > p {
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+}
+
+main > section article {
+    width: 100%;
+    margin-bottom: 0.2rem;
+}
+
+main > section article p {
+    color: var(--gray-color);
+    font-weight: 600;
+    font-size: 0.75rem;
+    margin-bottom: 0.4rem;
+}
+
+main > section article input[type="text"],
+main > section article input[type="password"] {
+    width: 100%;
+    height: 2rem;
+    border-radius: 1rem;
+    border: none;
+    color: var(--main-color);
+    background-color: var(--light-gray-color);
+    padding: 0.25rem 1rem;
+    outline: none;
+    border: transparent solid 0.1rem;
+    transition: border 0.25s;
+    box-sizing: border-box;
+}
+
+main > section article input[type="text"], 
+main > section article input[type="password"]:focus {
+    border: var(--main-color) solid 0.1rem;
+}
+
+main > section article.error input[type="text"],
+main > section article.error input[type="password"] {
+    background-color: var(--light-red-color);
+    border: var(--red-color) solid 0.1rem;
+}
+
+main > section article section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.2rem;
+    padding-left: 1rem;
+}
+
+main > section article section * {
+    display: none;
+}
+
+main > section article.error section * {
+    display: block;
+}
+
+main > section article.error section p {
+    font-size: 0.6rem;
+    color: var(--red-color);
+    font-weight: 400;
+    margin-left: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+main > section article section img {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.5rem;
+}
+
+main > section article.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+main > section article.checkbox p {
+    margin: 0;
+}
+
+main > section button {
+    padding: 0.25rem 1rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    height: 2rem;
+
+    width: 100%;
+    background-color: var(--main-color);
+    color: white;
+
+    border: transparent solid 0.15rem;
+
+    transition: border 0.25s;
+    cursor: pointer;
+    margin-top: 1rem;
+
+}
+main > section button.auth {
+    margin-top: 1.25rem;
+}
+
+main > section button.auth:hover {
+    background-color: var(--secondary-color);
+}
+
+main > section button.reg {
+    color: var(--main-color);
+    background-color: transparent;
+}
+
+main > section button.reg:hover {
+    border: var(--main-color) solid 0.15rem;
+}
